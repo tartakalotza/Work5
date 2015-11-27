@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEmployeesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_empId}" for="empId" />
+                    <h:inputText id="empId" value="#{employeesController.selected.empId}" title="#{bundle.EditEmployeesTitle_empId}" required="true" requiredMessage="#{bundle.EditEmployeesRequiredMessage_empId}"/>
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_empName}" for="empName" />
+                    <h:inputText id="empName" value="#{employeesController.selected.empName}" title="#{bundle.EditEmployeesTitle_empName}" />
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_birthday}" for="birthday" />
+                    <h:inputText id="birthday" value="#{employeesController.selected.birthday}" title="#{bundle.EditEmployeesTitle_birthday}" />
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{employeesController.selected.address}" title="#{bundle.EditEmployeesTitle_address}" />
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_phone}" for="phone" />
+                    <h:inputText id="phone" value="#{employeesController.selected.phone}" title="#{bundle.EditEmployeesTitle_phone}" />
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{employeesController.selected.email}" title="#{bundle.EditEmployeesTitle_email}" />
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_sex}" for="sex" />
+                    <h:inputText id="sex" value="#{employeesController.selected.sex}" title="#{bundle.EditEmployeesTitle_sex}" />
+                    <h:outputLabel value="#{bundle.EditEmployeesLabel_dptid}" for="dptid" />
+                    <h:selectOneMenu id="dptid" value="#{employeesController.selected.dptid}" title="#{bundle.EditEmployeesTitle_dptid}" >
+                        <f:selectItems value="#{departmentsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{employeesController.update}" value="#{bundle.EditEmployeesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEmployeesViewLink}"/>
+                <br />
+                <h:commandLink action="#{employeesController.prepareList}" value="#{bundle.EditEmployeesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEmployeesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

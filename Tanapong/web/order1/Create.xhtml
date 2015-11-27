@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateOrder1Title}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateOrder1Label_ordername}" for="ordername" />
+                    <h:inputText id="ordername" value="#{order1Controller.selected.ordername}" title="#{bundle.CreateOrder1Title_ordername}" />
+                    <h:outputLabel value="#{bundle.CreateOrder1Label_orderid}" for="orderid" />
+                    <h:inputText id="orderid" value="#{order1Controller.selected.orderid}" title="#{bundle.CreateOrder1Title_orderid}" required="true" requiredMessage="#{bundle.CreateOrder1RequiredMessage_orderid}"/>
+                    <h:outputLabel value="#{bundle.CreateOrder1Label_cusId}" for="cusId" />
+                    <h:selectOneMenu id="cusId" value="#{order1Controller.selected.cusId}" title="#{bundle.CreateOrder1Title_cusId}" >
+                        <f:selectItems value="#{customerController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateOrder1Label_empId}" for="empId" />
+                    <h:selectOneMenu id="empId" value="#{order1Controller.selected.empId}" title="#{bundle.CreateOrder1Title_empId}" >
+                        <f:selectItems value="#{employeesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{order1Controller.create}" value="#{bundle.CreateOrder1SaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{order1Controller.prepareList}" value="#{bundle.CreateOrder1ShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateOrder1IndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
